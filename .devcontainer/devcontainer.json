@@ -8,6 +8,16 @@
 		"ghcr.io/devcontainers-extra/features/go-task:1": {}
 	}
 
+	// // Use these insted for building docker container
+	// "name": "UbuntuDocker",
+	// "build": {
+    //     "context": ".",
+    //     "dockerfile": "Dockerfile"
+    // },
+	// "features": {
+    //     "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+    // }
+
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
 
