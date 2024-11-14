@@ -1,0 +1,9 @@
+version: '3'
+
+tasks:
+  show:
+    desc: Show OS and arch names.
+    silent: true
+    cmds:
+      - echo OS = $(uname -s)
+      - echo Arch = $(uname -m)

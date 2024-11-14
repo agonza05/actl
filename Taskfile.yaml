@@ -1,0 +1,25 @@
+version: '3'
+
+includes:
+  hardware:
+    taskfile: ./system/hardware.yaml
+    aliases: [hw]
+  os: ./system/os.yaml
+  packages:
+    taskfile: ./system/packages.yaml
+    aliases: [pkg]
+
+tasks:
+  default:
+    desc: Show current Taskfile location and available commands.
+    silent: true
+    cmds:
+      - echo Current Taskfile = $(pwd)
+      - task -a
+
+  update:
+    desc: Update actl tool.
+    silent: true
+    cmds:
+      - git pull --quiet
+      - git checkout --quiet main

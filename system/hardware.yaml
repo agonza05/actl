@@ -1,0 +1,20 @@
+version: '3'
+
+tasks:
+  show:
+    desc: Show hardware summary.
+    silent: true
+    cmds:
+      - echo CPUs = $(sysctl -n hw.ncpu)
+      - task: show-darwin
+
+  show-darwin:
+    internal: true
+    silent: true
+    platforms: [darwin]
+    vars:
+      JQ_HW_MEMORY: .SPHardwareDataType[0].physical_memory
+      JQ_CHIP_NAME: .SPHardwareDataType[0].chip_type
+    cmds:
+      - echo RAM = $(system_profiler SPHardwareDataType -json | jq -r "{{.JQ_HW_MEMORY}}")
+      - echo CPU Model = $(system_profiler SPHardwareDataType -json | jq -r "{{.JQ_CHIP_NAME}}")
