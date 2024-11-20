@@ -1,0 +1,52 @@
+# Initialization task for a new setup
+includes:
+  utils: ../core/utils.yml
+
+tasks:
+  clone-repos:
+    cmds:
+      - for: { var: REPOS }
+        task: utils:git-clone
+        vars:
+          DESTINATION_FOLDER: "{{ .PERSONAL_CODE_DIR }}/{{ .ITEM }}"
+          REPO_URL: "{{ .PERSONAL_REPO_URL }}/{{ .ITEM }}"
+    desc: Download personal repos.
+    internal: true
+
+  home-folders:
+    cmds:
+      - mkdir -p {{ .PERSONAL_CODE_DIR }}
+      - cmd: mkdir -p {{ .WORKSPACE_PATH }}/{{ .ITEM }}
+        for: { var: WORKSPACE_FOLDERS }
+      - cmd: mkdir -p {{ .PERSONAL_CODE_DIR }}/{{ .ITEM }}
+        for: { var: CODE_FOLDERS }
+    desc: Home folders.
+    internal: true
+
+  start:
+    cmds:
+      - task: home-folders
+      - task: clone-repos
+        vars:
+          REPOS:
+            ref: .PERSONAL_REPOS
+      - task: :dotfiles:setup
+    desc: Setup initialization.
+
+  update-actl:
+    cmds:
+      - task: clone-repos
+        vars:
+          REPOS: ["actl"]
+    desc: Update actl repo.
+    internal: true
+
+  update-dotfiles:
+    cmds:
+      - task: clone-repos
+        vars:
+          REPOS: ["dotfiles"]
+    desc: Update dotfiles repo.
+    internal: true
+
+version: 3

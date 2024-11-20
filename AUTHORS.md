@@ -1,4 +1,4 @@
 Contributors
 ============
 
-- Alberto Gonzalez <a.gonzalez@appliedai.de>
+- Alberto Gonzalez <alberto@agonza.net>

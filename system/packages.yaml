@@ -1,17 +1,18 @@
-version: '3'
-
 tasks:
   brew:
-    internal: true
-    silent: true
     cmds:
       - curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash
+    internal: true
+    silent: true
 
   update:
-    desc: Update packages.
-    silent: true
-    platforms: [darwin]
+    aliases: [up]
     cmds:
       - brew update && brew upgrade && brew cleanup
+    desc: Update packages.
+    platforms: [darwin]
     preconditions:
       - type brew
+    silent: true
+
+version: 3

@@ -1,25 +1,29 @@
-version: '3'
+dotenv: [".env"]
 
 includes:
   hardware:
-    taskfile: ./system/hardware.yaml
     aliases: [hw]
-  os: ./system/os.yaml
+    taskfile: ./system/hardware.yml
+  os: ./system/os.yml
   packages:
-    taskfile: ./system/packages.yaml
     aliases: [pkg]
+    taskfile: ./system/packages.yml
+  # setup: ./setup/setup.yml
+  setup:
+    aliases: [set]
+    taskfile: ./setup/
 
 tasks:
   default:
-    desc: Show current Taskfile location and available commands.
-    silent: true
     cmds:
       - echo Current Taskfile = $(pwd)
       - task -a
-
-  update:
-    desc: Update actl tool.
+    desc: Show current Taskfile location and available commands.
     silent: true
+  update:
+    aliases: [up]
     cmds:
-      - git pull --quiet
-      - git checkout --quiet main
+      - task: setup:update-actl
+    desc: Update actl tool.
+
+version: 3

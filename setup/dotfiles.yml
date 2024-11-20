@@ -1,0 +1,25 @@
+tasks:
+  git:
+    cmds:
+      - ln -sf {{ .DOTFILES_FOLDER }}/git/.gitconfig ${HOME}/.gitconfig
+      - ln -sf {{ .DOTFILES_FOLDER }}/git/.gitignore ${HOME}/.gitignore
+    desc: Config git dotfiles.
+    internal: true
+    silent: true
+
+  setup:
+    aliases: [set]
+    cmds:
+      - task: git
+    desc: Setup dotfiles.
+
+  update:
+    aliases: [up]
+    cmds:
+      - task: :setup:update-dotfiles
+    desc: Update dotfiles.
+
+vars:
+  DOTFILES_FOLDER: "{{ .PERSONAL_CODE_DIR }}/dotfiles"
+
+version: 3

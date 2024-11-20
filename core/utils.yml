@@ -1,0 +1,11 @@
+tasks:
+  git-clone:
+    cmds:
+      - git clone --quiet {{ .REPO_URL }} {{ .DESTINATION_FOLDER }} 2> /dev/null || git -C {{ .DESTINATION_FOLDER }} pull --prune # --quiet
+    desc: Clone repositories.
+    internal: true
+    preconditions:
+      - type git
+    silent: true
+
+version: 3
