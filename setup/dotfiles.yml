@@ -1,8 +1,8 @@
 tasks:
   git:
     cmds:
-      - ln -sf {{ .DOTFILES_FOLDER }}/git/.gitconfig ${HOME}/.gitconfig
-      - ln -sf {{ .DOTFILES_FOLDER }}/git/.gitignore ${HOME}/.gitignore
+      - cmd: ln -sf {{ .DOTFILES_FOLDER }}/git/{{ .ITEM }} ${HOME}/{{ .ITEM }}
+        for: { var: GIT_FILES }
     desc: Config git dotfiles.
     internal: true
     silent: true
@@ -21,5 +21,10 @@ tasks:
 
 vars:
   DOTFILES_FOLDER: "{{ .PERSONAL_CODE_DIR }}/dotfiles"
+  GIT_FILES:
+    - .gitconfig
+    - .gitignore
+    - .gitconfig.personal
+    - .gitconfig.work
 
 version: 3
