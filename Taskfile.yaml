@@ -29,7 +29,7 @@ tasks:
   update:
     aliases: [up]
     cmds:
-      - task: setup:update-actl
+      - task: setup:ini:update-actl
     desc: Update actl tool.
 
 version: 3
