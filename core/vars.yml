@@ -1,0 +1,25 @@
+version: 3
+
+vars:
+  WORKSPACE_PATH: "${HOME}/tasktest5/workspace"
+  WORKSPACE_FOLDERS:
+    - package
+    - config
+    - env
+    - venv
+    - vsc
+    - secret
+  WORKSPACE_CODE_FOLDERS:
+    - others
+    - company
+  PERSONAL_CODE_PATH: "{{ .WORKSPACE_PATH }}/code/personal"
+  PERSONAL_DOTFILES_PATH: "{{ .PERSONAL_CODE_PATH }}/dotfiles"
+  PERSONAL_REPO_URL: https://github.com/agonza05
+  PERSONAL_REPOS:
+    - actl
+    - dotfiles
+  GIT_FILES:
+    - .gitconfig
+    - .gitignore
+    - .gitconfig.personal
+    - .gitconfig.work

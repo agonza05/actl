@@ -1,0 +1,20 @@
+version: 3
+
+tasks:
+  default:
+    cmds:
+      - echo Current Taskfile = $(pwd)
+      - task -a
+    desc: Show current Taskfile location and available commands.
+    silent: true
+  git-config-*:
+    cmds:
+      - task: utils:git-config
+        vars:
+          GIT_ACCOUNT_TYPE: "{{index .MATCH 0}}"
+    desc: Configure git username and email.
+  update:
+    aliases: [up]
+    cmds:
+      - task: setup:ini:update-actl
+    desc: Update actl tool.

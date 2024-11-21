@@ -1,3 +1,5 @@
+version: 3
+
 tasks:
   git-clone:
     cmds:
@@ -6,7 +8,6 @@ tasks:
     internal: true
     preconditions:
       - type git
-    silent: true
 
   git-config:
     cmds:
@@ -16,8 +17,5 @@ tasks:
     preconditions:
       - type git
       - test -f {{ .DESTINATION_FOLDER }}/.git/config
-    silent: true
     vars:
       DESTINATION_FOLDER: "{{ .DESTINATION_FOLDER | default .USER_WORKING_DIR }}"
-
-version: 3

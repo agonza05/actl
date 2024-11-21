@@ -1,35 +1,23 @@
+version: 3
+
 dotenv: [".env"]
 
 includes:
+  vars:
+    flatten: true
+    taskfile: ./core/vars.yml
+  utils: ./core/utils.yml
+  tasks:
+    flatten: true
+    taskfile: ./core/tasks.yml
+  dotfiles:
+    aliases: [df]
+    taskfile: ./setup/dotfiles.yml
   hardware:
     aliases: [hw]
     taskfile: ./system/hardware.yml
+  ini: ./setup/init.yml
   os: ./system/os.yml
   packages:
     aliases: [pkg]
     taskfile: ./system/packages.yml
-  setup:
-    aliases: [set]
-    taskfile: ./setup/
-  utils: ./core/utils.yml
-
-tasks:
-  default:
-    cmds:
-      - echo Current Taskfile = $(pwd)
-      - task -a
-    desc: Show current Taskfile location and available commands.
-    silent: true
-  git-config-*:
-    cmds:
-      - task: utils:git-config
-        vars:
-          GIT_ACCOUNT_TYPE: "{{index .MATCH 0}}"
-    desc: Configure git username and email.
-  update:
-    aliases: [up]
-    cmds:
-      - task: setup:ini:update-actl
-    desc: Update actl tool.
-
-version: 3

@@ -1,7 +1,7 @@
 tasks:
   git:
     cmds:
-      - cmd: ln -sf {{ .DOTFILES_FOLDER }}/git/{{ .ITEM }} ${HOME}/{{ .ITEM }}
+      - cmd: ln -sf {{ .PERSONAL_DOTFILES_PATH }}/git/{{ .ITEM }} ${HOME}/{{ .ITEM }}
         for: { var: GIT_FILES }
     desc: Config git dotfiles.
     internal: true
@@ -19,13 +19,5 @@ tasks:
     cmds:
       - task: :ini:update-dotfiles
     desc: Update dotfiles.
-
-vars:
-  DOTFILES_FOLDER: "{{ .PERSONAL_CODE_DIR }}/dotfiles"
-  GIT_FILES:
-    - .gitconfig
-    - .gitignore
-    - .gitconfig.personal
-    - .gitconfig.work
 
 version: 3
