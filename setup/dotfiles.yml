@@ -10,13 +10,14 @@ tasks:
   setup:
     aliases: [set]
     cmds:
+      - task: update
       - task: git
     desc: Setup dotfiles.
 
   update:
     aliases: [up]
     cmds:
-      - task: :setup:update-dotfiles
+      - task: :ini:update-dotfiles
     desc: Update dotfiles.
 
 vars:

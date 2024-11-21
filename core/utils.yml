@@ -8,4 +8,16 @@ tasks:
       - type git
     silent: true
 
+  git-config:
+    cmds:
+      - git -C {{ .DESTINATION_FOLDER }} config include.path ~/.gitconfig.{{ .GIT_ACCOUNT_TYPE }}
+    desc: Clone repositories.
+    internal: true
+    preconditions:
+      - type git
+      - test -f {{ .DESTINATION_FOLDER }}/.git/config
+    silent: true
+    vars:
+      DESTINATION_FOLDER: "{{ .DESTINATION_FOLDER | default .USER_WORKING_DIR }}"
+
 version: 3

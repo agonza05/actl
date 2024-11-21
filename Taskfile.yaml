@@ -8,10 +8,10 @@ includes:
   packages:
     aliases: [pkg]
     taskfile: ./system/packages.yml
-  # setup: ./setup/setup.yml
   setup:
     aliases: [set]
     taskfile: ./setup/
+  utils: ./core/utils.yml
 
 tasks:
   default:
@@ -20,6 +20,12 @@ tasks:
       - task -a
     desc: Show current Taskfile location and available commands.
     silent: true
+  git-config-*:
+    cmds:
+      - task: utils:git-config
+        vars:
+          GIT_ACCOUNT_TYPE: "{{index .MATCH 0}}"
+    desc: Configure git username and email.
   update:
     aliases: [up]
     cmds:
