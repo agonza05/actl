@@ -1,18 +1,27 @@
 tasks:
-  git:
+  config-files:
+    label: "config-files-{{.CONFIG_APP}}"
+    desc: Link config files to personal dotfiles.
     cmds:
-      - cmd: ln -sf {{ .PERSONAL_DOTFILES_PATH }}/git/{{ .ITEM }} ${HOME}/{{ .ITEM }}
-        for: { var: GIT_FILES }
-    desc: Config git dotfiles.
+      - cmd: ln -sf {{ .PERSONAL_DOTFILES_PATH }}/{{ .CONFIG_APP }}/{{ .ITEM }} ${HOME}/{{ .ITEM }}
+        for: { var: CONFIG_FILES }
     internal: true
-    silent: true
 
   setup:
+    desc: Setup personal dotfiles.
     aliases: [set]
     cmds:
       - task: update
-      - task: git
-    desc: Setup dotfiles.
+      - task: config-files
+        vars:
+          CONFIG_APP: git
+          CONFIG_FILES:
+            ref: .GIT_CONFIG_FILES
+      - task: config-files
+        vars:
+          CONFIG_APP: zsh
+          CONFIG_FILES:
+            ref: .ZSH_CONFIG_FILES
 
   update:
     aliases: [up]

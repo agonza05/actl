@@ -18,8 +18,13 @@ vars:
   PERSONAL_REPOS:
     - actl
     - dotfiles
-  GIT_FILES:
+  GIT_CONFIG_FILES:
     - .gitconfig
     - .gitignore
     - .gitconfig.personal
     - .gitconfig.work
+  ZSH_CONFIG_FILES:
+    - .zshrc
+    - .zshrc.aliases
+    - .zshrc.exports
+    - .zshrc.functions
