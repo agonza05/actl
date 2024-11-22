@@ -26,6 +26,7 @@ tasks:
             ref: .GIT_CONFIG_FILES
       - brew bundle --file={{ .PERSONAL_DOTFILES_PATH }}/brew/Brewfile
       - brew bundle --file={{ .PERSONAL_DOTFILES_PATH }}/brew/Caskfile
+      - ln -sf {{ .PERSONAL_DOTFILES_PATH }}/zed/settings.json ${HOME}/.config/zed/settings.json
 
   update:
     aliases: [up]
