@@ -1,3 +1,5 @@
+version: 3
+
 tasks:
   config-files:
     label: "config-files-{{.CONFIG_APP}}"
@@ -14,19 +16,17 @@ tasks:
       - task: update
       - task: config-files
         vars:
-          CONFIG_APP: git
-          CONFIG_FILES:
-            ref: .GIT_CONFIG_FILES
-      - task: config-files
-        vars:
           CONFIG_APP: zsh
           CONFIG_FILES:
             ref: .ZSH_CONFIG_FILES
+      - task: config-files
+        vars:
+          CONFIG_APP: git
+          CONFIG_FILES:
+            ref: .GIT_CONFIG_FILES
 
   update:
     aliases: [up]
     cmds:
       - task: :ini:update-dotfiles
     desc: Update dotfiles.
-
-version: 3
