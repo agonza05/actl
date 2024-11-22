@@ -24,6 +24,8 @@ tasks:
           CONFIG_APP: git
           CONFIG_FILES:
             ref: .GIT_CONFIG_FILES
+      - brew bundle --file={{ .PERSONAL_DOTFILES_PATH }}/brew/Brewfile
+      - brew bundle --file={{ .PERSONAL_DOTFILES_PATH }}/brew/Caskfile
 
   update:
     aliases: [up]

@@ -7,7 +7,7 @@ tasks:
       - task -a
     desc: Show current Taskfile location and available commands.
     silent: true
-  git-config-*:
+  gitconf-*:
     cmds:
       - task: utils:git-config
         vars:

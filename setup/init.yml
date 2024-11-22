@@ -2,16 +2,17 @@ version: 3
 
 tasks:
   clone-repos:
+    desc: Download personal repos.
     cmds:
       - for: { var: REPOS }
         task: :utils:git-clone
         vars:
           DESTINATION_FOLDER: "{{ .PERSONAL_CODE_PATH }}/{{ .ITEM }}"
           REPO_URL: "{{ .PERSONAL_REPO_URL }}/{{ .ITEM }}"
-    desc: Download personal repos.
     internal: true
 
   start:
+    desc: Setup initialization.
     cmds:
       - task: workspace-folders
       - task: clone-repos
@@ -19,30 +20,29 @@ tasks:
           REPOS:
             ref: .PERSONAL_REPOS
       - task: :dotfiles:setup
-    desc: Setup initialization.
 
   update-actl:
+    desc: Update actl repo.
     cmds:
       - task: clone-repos
         vars:
           REPOS: ["actl"]
-    desc: Update actl repo.
     internal: true
 
   update-dotfiles:
+    desc: Update dotfiles repo.
     cmds:
       - task: clone-repos
         vars:
           REPOS: ["dotfiles"]
-    desc: Update dotfiles repo.
     internal: true
 
   workspace-folders:
+    desc: Home folders.
     cmds:
       - mkdir -p {{ .PERSONAL_CODE_PATH }}
       - cmd: mkdir -p {{ .WORKSPACE_PATH }}/{{ .ITEM }}
         for: { var: WORKSPACE_FOLDERS }
       - cmd: mkdir -p {{ .PERSONAL_CODE_PATH }}/{{ .ITEM }}
         for: { var: WORKSPACE_CODE_FOLDERS }
-    desc: Home folders.
     internal: true

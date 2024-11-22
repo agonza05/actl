@@ -26,5 +26,5 @@ vars:
   ZSH_CONFIG_FILES:
     - .zshrc
     - .zshrc.aliases
-    - .zshrc.exports
+    - .zprofile
     - .zshrc.functions
